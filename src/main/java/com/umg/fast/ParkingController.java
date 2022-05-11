@@ -36,7 +36,7 @@ public class ParkingController {
         return response;
     }
 
-    @PostMapping("parking/controller/login")
+    @PostMapping(value = "parking/controller/login",produces ="application/json")
     public Map login(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
@@ -49,7 +49,7 @@ public class ParkingController {
             response.put("success", true);
             response.put("mensaje", "bienvenido al sistema");
         }
-
+        System.out.println("response "+response);
         return response;
     }
 
