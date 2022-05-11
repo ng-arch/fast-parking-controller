@@ -26,4 +26,21 @@ public class ParkingController {
         return response;
     }
     
+    
+
+    
+    
+     @PostMapping("parking/controller/login")
+    public Map login(@RequestBody Map request){
+        System.out.println("controller login "+request);
+        //select hacia la base de datos
+        Map response=new HashMap();
+        response.put("success", true);
+        response.put("mensaje","bienvenido al sistema");
+        
+        return response;
+    }
+    
+
+    
 }
