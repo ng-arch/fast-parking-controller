@@ -53,7 +53,7 @@ public class ParkingController {
         return response;
     }
     @PostMapping(value = "parking/controller/register",produces ="application/json")
-    public Map login(@RequestBody Map request) {
+    public Map register(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
         response.put("success", false);
@@ -69,8 +69,8 @@ public class ParkingController {
         System.out.println("response "+response);
         return response;
     }
-@PostMapping(value = "parking/controller/registrousr",produces ="application/json")
-    public Map login(@RequestBody Map request) {
+@PostMapping(value = "parking/controller/registrotkt",produces ="application/json")
+    public Map registrotkt(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
         response.put("success", false);
@@ -80,12 +80,7 @@ public class ParkingController {
         String usuario_id = String.valueOf(request.get(""));
         String tipo_pago_id = String.valueOf(request.get(""));
         String vehiculo_placa = String.valueOf(request.get(""));
-        List<Usuario> usuarios = usuarioRepository.findByUsuario(usuario);
         
-        if (usuarios != null && usuarios.size()> 0) {
-            response.put("success", true);
-            response.put("mensaje", "bienvenido al sistema");
-        }
         System.out.println("response "+response);
         return response;
     }
