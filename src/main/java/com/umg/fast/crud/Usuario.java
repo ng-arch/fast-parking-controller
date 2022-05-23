@@ -37,7 +37,7 @@ public class Usuario {
     
     
    
- @Id
+  @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;

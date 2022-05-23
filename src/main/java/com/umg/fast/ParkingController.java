@@ -65,7 +65,7 @@ public class ParkingController {
         String password = String.valueOf(request.get("password"));
         String nombre = String.valueOf(request.get("nombre"));
         Usuario usuario1 = new Usuario();
-        usuario1.setId(System.currentTimeMillis());
+        
         usuario1.setNombre(nombre);
         usuario1.setPassword(password);
         usuario1.setUsuario(usuario);
