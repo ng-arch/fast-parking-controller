@@ -36,20 +36,23 @@ public class ParkingController {
         return response;
     }
 
-    @PostMapping(value = "parking/controller/login",produces ="application/json")
+    @PostMapping(value = "parking/controller/login", produces = "application/json")
     public Map login(@RequestBody Map request) {
         System.out.println("controller login " + request);
+
         Map response = new HashMap();
         response.put("success", false);
+        response.put("mensaje", "usuario no existe");
+
         String usuario = String.valueOf(request.get("usuario"));
         String password = String.valueOf(request.get("password"));
         List<Usuario> usuarios = usuarioRepository.findByUsuario(usuario);
-        
-        if (usuarios != null && usuarios.size()> 0) {
+
+        if (usuarios != null && usuarios.size() > 0) {
             response.put("success", true);
             response.put("mensaje", "bienvenido al sistema");
         }
-        System.out.println("response "+response);
+        System.out.println("response " + response);
         return response;
     }
 
