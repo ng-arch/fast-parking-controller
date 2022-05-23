@@ -55,7 +55,8 @@ public class ParkingController {
         System.out.println("response " + response);
         return response;
     }
-    @PostMapping(value = "parking/controller/register",produces ="application/json")
+
+    @PostMapping(value = "parking/controller/register", produces = "application/json")
     public Map register(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
@@ -63,16 +64,21 @@ public class ParkingController {
         String usuario = String.valueOf(request.get("usuario"));
         String password = String.valueOf(request.get("password"));
         String nombre = String.valueOf(request.get("nombre"));
-        List<Usuario> usuarios = usuarioRepository.findByUsuario(usuario);
-        
-        if (usuarios != null && usuarios.size()> 0) {
-            response.put("success", true);
-            response.put("mensaje", "bienvenido al sistema");
-        }
-        System.out.println("response "+response);
+        Usuario usuario1 = new Usuario();
+        usuario1.setId(System.currentTimeMillis());
+        usuario1.setNombre(nombre);
+        usuario1.setPassword(password);
+        usuario1.setUsuario(usuario);
+        usuarioRepository.save(usuario1);
+
+        response.put("success", true);
+        response.put("mensaje", "bienvenido al sistema");
+
+        System.out.println("response " + response);
         return response;
     }
-@PostMapping(value = "parking/controller/registrotkt",produces ="application/json")
+
+    @PostMapping(value = "parking/controller/registrotkt", produces = "application/json")
     public Map registrotkt(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
@@ -83,23 +89,19 @@ public class ParkingController {
         String usuario_id = String.valueOf(request.get("usuario_id"));
         String tipo_pago_id = String.valueOf(request.get("tipo_pago_id"));
         String vehiculo_placa = String.valueOf(request.get("vehiculo_placa"));
-        
-        System.out.println("response "+response);
+
+        System.out.println("response " + response);
         return response;
     }
-     @PostMapping(value = "parking/controller/retorntkt",produces ="application/json")
+
+    @PostMapping(value = "parking/controller/retorntkt", produces = "application/json")
     public Map retorntkt(@RequestBody Map request) {
         System.out.println("controller login " + request);
         Map response = new HashMap();
         response.put("success", false);
         String rticket = String.valueOf(request.get("rticket"));
-        List<Usuario> usuarios = usuarioRepository.findByUsuario(usuario);
-        
-        if (usuarios != null && usuarios.size()> 0) {
-            response.put("success", true);
-            response.put("mensaje", "bienvenido al sistema");
-        }
-        System.out.println("response "+response);
+    
+        System.out.println("response " + response);
         return response;
     }
 }
