@@ -72,7 +72,7 @@ public class ParkingController {
         usuarioRepository.save(usuario1);
 
         response.put("success", true);
-        response.put("mensaje", "bienvenido al sistema");
+        response.put("mensaje", "Usuario creado exitosamente");
 
         System.out.println("response " + response);
         return response;
