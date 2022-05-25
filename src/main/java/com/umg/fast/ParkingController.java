@@ -104,4 +104,26 @@ public class ParkingController {
         System.out.println("response " + response);
         return response;
     }
+     @PostMapping(value = "parking/controller/id", produces = "application/json")
+    public Map id(@RequestBody Map request) {
+        System.out.println("controller login " + request);
+        Map response = new HashMap();
+        response.put("success", false);
+        String rticket = String.valueOf(request.get("id"));
+    
+        System.out.println("response " + response);
+        return response;
+    }
+     @PostMapping(value = "parking/controller/pago", produces = "application/json")
+    public Map pago(@RequestBody Map request) {
+        System.out.println("controller login " + request);
+        Map response = new HashMap();
+        response.put("success", false);
+        String hora_salida = String.valueOf(request.get("hora_salida"));
+        String monto = String.valueOf(request.get("monto"));
+        String hora_entrada = String.valueOf(request.get("tipo_pago"));
+
+        System.out.println("response " + response);
+        return response;
+    }
 }
