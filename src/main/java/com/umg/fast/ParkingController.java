@@ -103,8 +103,8 @@ public class ParkingController {
             ticket.setUsuario_id(01);
             ticket.setVehiculo_placa(vehiculo_placa);
             ticket.setHora_salida(new Date());
-            ticketRepository.save(ticket);
-            response.put("message", "registro ticket ok");
+            Ticket ticket2=ticketRepository.save(ticket);
+            response.put("message", "registro ticket ok, id generado "+ticket2.getId());
             response.put("success", true);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -165,6 +165,8 @@ public class ParkingController {
         ticket.setHora_salida(new Date());
         ticketRepository.save(ticket);
         System.out.println("response " + response);
+        response.put("success", true);
+        response.put("message", "pago procesado exitosamente");
         return response;
     }
 }
