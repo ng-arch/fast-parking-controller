@@ -5,6 +5,7 @@
  */
 package com.umg.fast;
 
+import com.google.gson.Gson;
 import com.umg.fast.crud.Ticket;
 import com.umg.fast.crud.TicketRepository;
 import com.umg.fast.crud.Usuario;
@@ -104,7 +105,7 @@ public class ParkingController {
             ticket.setHora_salida(new Date());
             ticketRepository.save(ticket);
             response.put("message", "registro ticket ok");
-            response.put("success",true);
+            response.put("success", true);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -129,16 +130,17 @@ public class ParkingController {
         Map response = new HashMap();
         response.put("success", false);
         response.put("message", "");
-
+        Gson gson = new Gson();
         System.out.println("controller busqueda tkt " + request);
 
         try {
 
             String idTicket = String.valueOf(request.get("id"));
-            Optional<Ticket> ticketOpt = ticketRepository.findById(Long.parseLong(idTicket));
-            Ticket ticketOk = ticketOpt.get();
+            Ticket ticketOk = ticketRepository.findById(Integer.valueOf(idTicket));
+
             System.out.println("response " + response);
             response.put("message", "ticket encontrado " + ticketOk.getVehiculo_placa());
+            response.put("ticket", gson.fromJson(gson.toJson(ticketOk), Map.class));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -150,10 +152,18 @@ public class ParkingController {
         System.out.println("controller login " + request);
         Map response = new HashMap();
         response.put("success", false);
+        String id = String.valueOf(request.get("id"));
         String hora_salida = String.valueOf(request.get("hora_salida"));
         String monto = String.valueOf(request.get("monto"));
-        String hora_entrada = String.valueOf(request.get("tipo_pago"));
-
+        String hora_entrada = String.valueOf(request.get("hora_entrada"));
+        String vehiculo_placa = String.valueOf(request.get("vehiculo_placa"));
+        Ticket ticket = new Ticket();
+        ticket.setId(Integer.valueOf(id));
+        ticket.setMonto(Double.valueOf(monto));
+        ticket.setVehiculo_placa(vehiculo_placa);
+        ticket.setHora_entrada(new Date());
+        ticket.setHora_salida(new Date());
+        ticketRepository.save(ticket);
         System.out.println("response " + response);
         return response;
     }
